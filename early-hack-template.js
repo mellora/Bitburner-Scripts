@@ -1,6 +1,6 @@
 /** @param {import(".").NS } ns */
 export async function main(ns) {
-  ns.disableLog('ALL');
+  // ns.disableLog('ALL');
   // Defines the "target server", which is the server
   // that we're going to hack.
   let target = ns.args[0];

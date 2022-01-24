@@ -16,11 +16,14 @@ export async function main(ns) {
   servers = servers.split(",");
 
   const scriptName = "early-hack-template.js";
+  const scriptNames = ["hack.js", "grow.js", "weaken.js"];
   const target = "joesguns";
   // const target = 'johnson-ortho';
 
   // Run the rooting scripts
   ns.run("get-root.js");
+
+  await ns.sleep(5000);
 
   servers = servers.filter((item) => item != "home");
 
