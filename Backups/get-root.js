@@ -1,5 +1,9 @@
-/** @param {import(".").NS } ns */
+/** @param {import("..").NS } ns */
 export async function main(ns) {
+  ns.disableLog("ALL");
+  ns.enableLog("nuke");
+  ns.enableLog("installBackdoor");
+
   let file = "server-list.txt";
   let servers = ns.read(file);
   servers = servers.split(",");
@@ -35,8 +39,10 @@ export async function main(ns) {
         ns.nuke(server);
       }
       if (ns.hasRootAccess(server)) {
-        await ns.installBackdoor(server);
+        ns.connect(server);
+        await ns.installBackdoor();
       }
     }
   }
+  ns.connect("home");
 }
