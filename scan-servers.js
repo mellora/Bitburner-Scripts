@@ -4,7 +4,7 @@ export async function main(ns) {
     let results = [server];
     let children = ns.scan(server);
     for (let child of children) {
-      if (child != parent && !child.includes("pserv-")) {
+      if (child != parent && !child.includes("pserv-") && !child.includes("hacknet")) {
         results = results.concat(await getServerList(child, server));
       }
     }

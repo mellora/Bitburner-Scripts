@@ -13,12 +13,21 @@ export async function main(ns) {
 
   await ns.sleep(5000);
 
-  ns.run("stocks.js");
-  // ns.run("purchase-hacknet-nodes.js");
-
   ns.run("get-root.js");
 
   await ns.sleep(5000);
+
+  try {
+    ns.purchaseTor();
+  } catch (error) {
+    ns.print(error);
+  }
+
+  ns.run("stocks.js");
+  ns.run("purchase-hacknet.js");
+  ns.run("hacknet-hash.js")
+
+  await ns.sleep(10000);
 
   ns.run(
     "early-hack-template.js",

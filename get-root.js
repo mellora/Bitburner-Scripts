@@ -8,7 +8,8 @@ export async function main(ns) {
     let portCount = 0;
     if (
       ns.getHackingLevel() >= ns.getServerRequiredHackingLevel(server) &&
-      !server.includes("pserv-")
+      !server.includes("pserv-") &&
+      !server.includes("home")
     ) {
       if (ns.fileExists("BruteSSH.exe")) {
         ns.brutessh(server);
@@ -33,9 +34,9 @@ export async function main(ns) {
       if (portCount >= ns.getServerNumPortsRequired(server)) {
         ns.nuke(server);
       }
-      // if (ns.hasRootAccess(server)) {
-      //   ns.installBackdoor(server);
-      // }
+      if (ns.hasRootAccess(server)) {
+        await ns.installBackdoor(server);
+      }
     }
   }
 }

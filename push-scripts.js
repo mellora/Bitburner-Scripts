@@ -16,7 +16,7 @@ export async function main(ns) {
   servers = servers.split(",");
 
   const scriptName = "early-hack-template.js";
-  const scriptNames = ["hack.js", "grow.js", "weaken.js"];
+  // const scriptName = "hack.js";
   const target = "joesguns";
   // const target = 'johnson-ortho';
 
