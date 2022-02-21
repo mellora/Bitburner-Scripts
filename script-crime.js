@@ -42,12 +42,10 @@ export async function main(ns) {
     });
 
     ns.commitCrime(bestCrime[0]);
+    ns.print(`\nCrime: ${bestCrime[0]}`);
+    ns.print(`Risk Value: ${bestCrime[1].toPrecision(3)}`);
     ns.print(
-      `
-      Crime: ${bestCrime[0]}
-      Risk Value: ${bestCrime[1].toPrecision(3)} 
-      Cash to Earn: \$${ns.getCrimeStats(bestCrime[0]).money.toPrecision(4)}
-      `
+      `Cash to Earn: $${ns.getCrimeStats(bestCrime[0]).money.toPrecision(4)}`
     );
   }
 }
