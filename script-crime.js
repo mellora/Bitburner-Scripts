@@ -24,7 +24,8 @@ export async function main(ns) {
     let choices = crimes.map((crime) => {
       let crimeStats = ns.getCrimeStats(crime); // Let us look at the important bits
       let crimeChance = ns.getCrimeChance(crime); // We need to calculate if its worth it
-      /** Using probabilty(odds) to calculate the "risk" to get the best reward
+      /**
+       * Using probabilty(odds) to calculate the "risk" to get the best reward
        * Risk Value = Money Earned * Odds of Success(P(A) / ~P(A)) / Time taken
        *
        * Larger risk values indicate a better choice
@@ -42,9 +43,11 @@ export async function main(ns) {
 
     ns.commitCrime(bestCrime[0]);
     ns.print(
-      `Crime: ${bestCrime[0]} Risk Value: ${bestCrime[1].toPrecision(
-        3
-      )} Cash to Earn: \$${ns.getCrimeStats(bestCrime[0]).money.toPrecision(4)}`
+      `
+      Crime: ${bestCrime[0]}
+      Risk Value: ${bestCrime[1].toPrecision(3)} 
+      Cash to Earn: \$${ns.getCrimeStats(bestCrime[0]).money.toPrecision(4)}
+      `
     );
   }
 }
