@@ -11,17 +11,24 @@ export async function main(ns) {
     return count;
   };
 
-  // ns.run("scan-servers.js");
-
-  let file = "server-list.txt";
-  let servers = ns.read(file);
-  servers = servers.split(",");
+  const getServerList = async (server, parent) => {
+    let results = [server];
+    let children = ns.scan(server);
+    for (let child of children) {
+      if (
+        child != parent &&
+        !child.includes("pserv-") &&
+        !child.includes("hacknet")
+      ) {
+        results = results.concat(await getServerList(child, server));
+      }
+    }
+    return results;
+  };
 
   const scriptName = "early-hack-template.js";
-  // const scriptName = "hack.js";
-  // const target = "joesguns";
-  // const target = 'johnson-ortho';
 
+  let servers = await getServerList("home", "");
   servers = servers.filter((item) => item != "home");
 
   for (let server of servers) {
