@@ -19,7 +19,7 @@ export async function main(ns) {
 
   const scriptName = "early-hack-template.js";
   // const scriptName = "hack.js";
-  const target = "joesguns";
+  // const target = "joesguns";
   // const target = 'johnson-ortho';
 
   servers = servers.filter((item) => item != "home");
@@ -51,10 +51,6 @@ export async function main(ns) {
         ns.nuke(server);
       }
       if (ns.hasRootAccess(server)) {
-        // Connects to server long enough to backdoor it.
-        ns.connect(server);
-        await ns.installBackdoor();
-        ns.connect("home");
         // Kill running scripts on host
         await ns.killall(server);
         // Copy hacking script over to servers
@@ -63,8 +59,7 @@ export async function main(ns) {
         let threads = getThreadCount(server, scriptName);
         // Execute script on target server
         if (threads > 0) {
-          ns.exec(scriptName, server, threads, target);
-          ns.print("Script Running on " + server);
+          ns.exec(scriptName, server, threads, server);
         }
       }
     }
