@@ -36,7 +36,7 @@ export async function main(ns) {
   ns.nuke("n00dles")
   ns.run(
     "early-hack-template.js",
-    getThreadCount("home", "early-hack-template.js") - 6,
+    getThreadCount("home", "early-hack-template.js") - 32,
     "n00dles"
   );
 }
