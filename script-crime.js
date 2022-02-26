@@ -1,16 +1,21 @@
+let doc = eval("document");
 /** @param {import(".").NS } ns */
-export async function main(ns) {
+export const main = async (ns) => {
   const crimes = [
     "heist",
     "assassination",
-    "kidnap",
+    "kidnap and ransom",
     "grand theft auto",
     "homicide",
+    "traffick illegal arms",
+    "bond forgery",
+    "deal drugs",
     "larceny",
     "mug someone",
     "rob store",
     "shoplift",
   ];
+  let crimeCount = 0;
 
   ns.disableLog("ALL"); // Disable the log
 
@@ -32,6 +37,8 @@ export async function main(ns) {
        */
       let crimeRiskValue =
         (crimeStats.money *
+          (ns.getPlayer().crime_money_mult *
+            ns.getBitNodeMultipliers().CrimeMoney) *
           Math.log10(crimeChance / (1 - crimeChance + Number.EPSILON))) /
         crimeStats.time;
       return [crime, crimeRiskValue];
@@ -41,11 +48,16 @@ export async function main(ns) {
       return prev[1] > current[1] ? prev : current;
     });
 
-    ns.commitCrime(bestCrime[0]);
-    ns.print(`\nCrime: ${bestCrime[0]}`);
-    ns.print(`Risk Value: ${bestCrime[1].toPrecision(3)}`);
     ns.print(
-      `Cash to Earn: $${ns.getCrimeStats(bestCrime[0]).money.toPrecision(4)}`
+      `Crime: ${bestCrime[0]} | Cash: $${
+        ns.getCrimeStats(bestCrime[0]).money *
+        (
+          ns.getPlayer().crime_money_mult *
+          ns.getBitNodeMultipliers().CrimeMoney
+        ).toPrecision(5)
+      } | Count: #${crimeCount}`
     );
+    crimeCount++;
+    ns.commitCrime(bestCrime[0]);
   }
-}
+};
