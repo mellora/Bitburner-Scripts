@@ -1,6 +1,6 @@
-let doc = eval("document"),
-  f = ["CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z", "w0r1d_d43m0n"],
-  css = `<style id="scanCSS">
+let doc = eval("document");
+let f = ["CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z", "w0r1d_d43m0n"];
+let css = `<style id="scanCSS">
         .sc {white-space:pre; color:#ccc; font:14px monospace; line-height: 16px; }
         .sc .s {color:#080;cursor:pointer;text-decoration:underline}
         .sc .f {color:#088}
@@ -10,36 +10,36 @@ let doc = eval("document"),
         .sc .hack {display:inline-block; font:12px monospace}
         .sc .red {color:red;}
         .sc .green {color:green;}
-    </style>`,
-  tprint = (html) =>
-    doc
-      .getElementById("terminal")
-      .insertAdjacentHTML("beforeend", `<li>${html}</li>`);
+    </style>`;
+let tprint = (html) =>
+  doc
+    .getElementById("terminal")
+    .insertAdjacentHTML("beforeend", `<li>${html}</li>`);
 
 /** @param {import(".").NS } ns */
 export const main = async (ns) => {
-  let tIn = doc.getElementById("terminal-input"),
-    tEv = tIn[Object.keys(tIn)[1]];
+  let tIn = doc.getElementById("terminal-input");
+  let tEv = tIn[Object.keys(tIn)[1]];
   doc.head.insertAdjacentHTML(
     "beforeend",
     doc.getElementById("scanCSS") ? "" : css
   );
-  let s = ["home"],
-    p = [""],
-    r = { home: "home" },
-    myHack = ns.getHackingLevel(),
-    fName = (x) => {
-      let reqHack = ns.getServerRequiredHackingLevel(x);
-      return (
-        `<a class="s${f.includes(x) ? " f" : ""}${
-          ns.hasRootAccess(x) ? " r" : ""
-        }">${x}</a>` +
-        ` <span class="hack ${
-          reqHack <= myHack ? "green" : "red"
-        }">(${reqHack})</span>` +
-        `${" @".repeat(ns.ls(x, ".cct").length)}`
-      );
-    };
+  let s = ["home"];
+  let p = [""];
+  let r = { home: "home" };
+  let myHack = ns.getHackingLevel();
+  let fName = (x) => {
+    let reqHack = ns.getServerRequiredHackingLevel(x);
+    return (
+      `<a class="s${f.includes(x) ? " f" : ""}${
+        ns.hasRootAccess(x) ? " r" : ""
+      }">${x}</a>` +
+      ` <span class="hack ${
+        reqHack <= myHack ? "green" : "red"
+      }">(${reqHack})</span>` +
+      `${" @".repeat(ns.ls(x, ".cct").length)}`
+    );
+  };
   let tcommand = (x) => {
     tIn.value = x;
     tEv.onChange({ target: tIn });
