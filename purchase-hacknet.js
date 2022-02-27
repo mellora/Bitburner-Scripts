@@ -1,5 +1,5 @@
 /** @param {import(".").NS } ns */
-export async function main(ns) {
+export const main = async (ns) => {
   const waitForMoney = async (targetMoney, delayTime, thresholdMultiplier) => {
     while (ns.getPlayer().money / thresholdMultiplier < targetMoney) {
       await ns.sleep(delayTime);

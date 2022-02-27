@@ -1,5 +1,5 @@
 /** @param {import(".").NS } ns */
-export async function main(ns) {
+export const main = async (ns) => {
   // ns.disableLog('ALL');
   // Defines the "target server", which is the server
   // that we're going to hack.

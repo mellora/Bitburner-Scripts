@@ -10,7 +10,7 @@ const COMMISSION = 100000; //Buy or sell commission
 const REFRESH = 5200; // time to wait between stock price refreshes
 
 /** @param {import(".").NS } ns */
-export async function main(ns) {
+export const main = async (ns) => {
   const refreshStocks = () => {
     return ns.stock
       .getSymbols()

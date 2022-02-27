@@ -1,5 +1,5 @@
 /** @param {import(".").NS } ns */
-export async function main(ns) {
+export const main = async (ns) => {
   ns.disableLog("ALL");
 
   const pServerPrefix = "p-server-";

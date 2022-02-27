@@ -1,5 +1,5 @@
 /** @param {import(".").NS } ns */
-export async function main(ns) {
+export const main = async (ns) => {
   const getThreadCount = (hostName, scriptName) => {
     /**
      * Arrow Function to get available number of threads
