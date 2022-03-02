@@ -44,7 +44,7 @@ export const main = async (ns) => {
     if (!isSellAll) {
       ns.print(`Sold ${stock.sym} for profit of ${format(profit)}`);
     } else {
-      ns.tprint(`Sold ${stock.sym} for profit of ${format(profit)}`);
+      ns.print(`Sold ${stock.sym} for profit of ${format(profit)}`);
     }
     ns.stock.sell(stock.sym, numShares);
     return profit;
@@ -63,14 +63,14 @@ export const main = async (ns) => {
 
   let rollingProfit = 0;
   if (ns.args[0] == "sellall") {
-    ns.tprint("selling all stocks");
+    ns.print("selling all stocks");
     const allStocks = refreshStocks(ns);
     allStocks
       .filter((stk) => stk.shares > 0)
       .forEach((stk) => {
         rollingProfit += sell(stk, stk.shares, true);
       });
-    ns.tprint(`made ~${format(rollingProfit)}`);
+    ns.print(`made ~${format(rollingProfit)}`);
     return;
   }
   //Initialise
