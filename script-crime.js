@@ -48,12 +48,18 @@ export const main = async (ns) => {
       return prev[1] > current[1] ? prev : current;
     });
 
+    ns.print(`Crime: ${bestCrime[0]} | Count: #${crimeCount}`);
     ns.print(
-      `Crime: ${bestCrime[0]} | Cash: $${Number(
+      `Cash: $${Number(
         ns.getCrimeStats(bestCrime[0]).money *
           (ns.getPlayer().crime_money_mult *
             ns.getBitNodeMultipliers().CrimeMoney)
-      ).toFixed(2)} | Count: #${crimeCount}`
+      ).toFixed(2)} | Cash/Sec $${Number(
+        (ns.getCrimeStats(bestCrime[0]).money *
+          (ns.getPlayer().crime_money_mult *
+            ns.getBitNodeMultipliers().CrimeMoney)) /
+          (ns.getCrimeStats(bestCrime[0]).time / 1000)
+      ).toFixed(2)}`
     );
     crimeCount++;
     ns.commitCrime(bestCrime[0]);

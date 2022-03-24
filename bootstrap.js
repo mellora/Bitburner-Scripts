@@ -1,3 +1,4 @@
+let doc = eval("document");
 /** @param {import(".").NS } ns */
 export const main = async (ns) => {
   const getThreadCount = (hostName, scriptName) => {
@@ -29,14 +30,15 @@ export const main = async (ns) => {
   ns.run("purchase-hacknet.js"); // Runs script to purchase Hacknet Servers
   ns.run("hacknet-hash.js"); // Runs script to spend hashes generated my Hacknet Server Network
 
+  await ns.sleep(1000);
   /**
    * Following nukes server n00dles and then runs hacking script
    * against the server.
    */
-  ns.nuke("n00dles")
+  ns.nuke("n00dles");
   ns.run(
     "early-hack-template.js",
-    getThreadCount("home", "early-hack-template.js") - 32,
+    getThreadCount("home", "early-hack-template.js"),
     "n00dles"
   );
-}
+};

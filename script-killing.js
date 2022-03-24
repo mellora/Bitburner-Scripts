@@ -36,13 +36,7 @@ export const main = async (ns) => {
     });
 
     ns.print(
-      `Crime: ${bestCrime[0]} | Cash: $${
-        ns.getCrimeStats(bestCrime[0]).money *
-        (
-          ns.getPlayer().crime_money_mult *
-          ns.getBitNodeMultipliers().CrimeMoney
-        ).toPrecision(5)
-      } | Count: #${crimeCount}`
+      `Crime: ${bestCrime[0]} | Count: #${crimeCount}`
     );
     crimeCount++;
     ns.commitCrime(bestCrime[0]);

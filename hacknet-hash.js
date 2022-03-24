@@ -1,3 +1,4 @@
+let doc = eval("document");
 /** @param {import(".").NS } ns */
 export const main = async (ns) => {
   while (true) {

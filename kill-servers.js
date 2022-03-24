@@ -2,7 +2,7 @@
 export const main = async (ns) => {
   ns.disableLog("ALL");
 
-  const pServerPrefix = "p-server-";
+  const pServerPrefix = "pserv-";
   for (let i = 0; i < ns.getPurchasedServerLimit(); i++) {
     let pServer = pServerPrefix + i;
     if (ns.serverExists(pServer)) {
