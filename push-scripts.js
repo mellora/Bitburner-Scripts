@@ -58,10 +58,12 @@ export const main = async (ns) => {
         ns.nuke(server);
       }
       if (ns.hasRootAccess(server)) {
-        // Kill running scripts on host
-        await ns.killall(server);
-        // Copy hacking script over to servers
-        await ns.scp(scriptName, server);
+        if (!ns.fileExists(scriptName, server)) {
+          // Kill running scripts on host
+          await ns.killall(server);
+          // Copy hacking script over to servers
+          await ns.scp(scriptName, server);
+        }
         // Find out how many threads that can be run of the script from the server
         let threads = getThreadCount(server, scriptName);
         // Execute script on target server
@@ -71,4 +73,4 @@ export const main = async (ns) => {
       }
     }
   }
-}
+};
