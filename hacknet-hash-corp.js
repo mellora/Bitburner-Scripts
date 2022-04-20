@@ -13,12 +13,7 @@ export const main = async (ns) => {
       cost: ns.hacknet.hashCost("Exchange for Corporation Research"),
     };
 
-    let hash;
-    if (corpFunds.cost <= corpResearch.cost) {
-      hash = corpFunds;
-    } else {
-      hash = corpResearch;
-    }
+    let hash = corpFunds.cost <= corpResearch.cost ? corpFunds : corpResearch;
 
     if (ns.hacknet.numHashes() > hash.cost) {
       ns.hacknet.spendHashes(hash.name);
