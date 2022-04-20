@@ -28,7 +28,7 @@ export const main = async (ns) => {
 
   ns.run("stocks.js"); // Runs script to auto manage stocks.
   ns.run("purchase-hacknet.js"); // Runs script to purchase Hacknet Servers
-  ns.run("hacknet-hash.js"); // Runs script to spend hashes generated my Hacknet Server Network
+  ns.run("hacknet-hash-money.js"); // Runs script to spend hashes generated my Hacknet Server Network
 
   await ns.sleep(1000);
   /**
