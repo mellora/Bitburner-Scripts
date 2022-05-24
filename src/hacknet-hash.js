@@ -1,5 +1,5 @@
 let doc = eval("document");
-/** @param {import(".").NS } ns */
+/** @param {import("./..").NS } ns */
 export const main = async (ns) => {
   ns.disableLog("ALL");
 
@@ -9,10 +9,12 @@ export const main = async (ns) => {
       cost: ns.hacknet.hashCost("Sell for Money"),
     };
 
-    if (ns.hacknet.numHashes() > funds.cost) {
-      ns.hacknet.spendHashes(funds.name);
+    let hash = funds;
+
+    if (ns.hacknet.numHashes() > hash.cost) {
+      ns.hacknet.spendHashes(hash.name);
       ns.print("Purchased:");
-      ns.print(funds);
+      ns.print(hash);
     } else {
       await ns.sleep(1);
     }
